@@ -1,4 +1,11 @@
 #!/usr/bin/env ruby
+require 'trollop'
+
+opts = Trollop::options do
+  opt :short, "3-5-3 syllables", :default => false
+  opt :medium, "5-7-5 syllables", :default => true
+  opt :long, "7-9-7 syllables", :default => false
+end
 
 CMUDICT_PATH = '/Users/vera/nltk_data/corpora/cmudict/cmudict'
 
@@ -50,4 +57,6 @@ def haiku(syllables_by_line)
   poem.map {|k| k.join(' ')+"\n"}
 end
 
-puts haiku([5,7,5])
+opts[:short] ? (puts haiku([3,5,3])) : nil
+opts[:medium] ? (puts haiku([5,7,5]), puts) : nil
+opts[:long] ? (puts haiku([7,9,7])) : nil
