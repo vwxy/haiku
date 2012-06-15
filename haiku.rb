@@ -1,20 +1,17 @@
 #!/usr/bin/env ruby
-require 'debugger'
+
+CMUDICT_PATH = '/Users/vera/nltk_data/corpora/cmudict/cmudict'
 
 def create_syllable_file
-  lines = File.read('/Users/vera/nltk_data/corpora/cmudict/cmudict').split(/\n/)
+  lines = File.read(CMUDICT_PATH).split(/\n/)
   d = lines.inject({}) do |d,line|
     cols = line.split(' ')
     word = cols.shift.downcase
-    cols.shift
-    sylcount = cols.inject(0) do |sum,syl|
-      if /.*\d$/.match syl
-        sum + 1
-      else
-        sum
-      end
+    cols.shift  # ignore second column
+    syllable_count = cols.inject(0) do |sum,syl|
+      /.*\d$/.match(syl) ? sum + 1 : sum
     end
-    d[word] = sylcount
+    d[word] = syllable_count
     d
   end
   File.open('dictionary.txt','w') do |f|
