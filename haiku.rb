@@ -57,6 +57,4 @@ def haiku(syllables_by_line)
   poem.map {|k| k.join(' ')+"\n"}
 end
 
-opts[:short] ? (puts haiku([3,5,3])) : nil
-opts[:medium] ? (puts haiku([5,7,5]), puts) : nil
-opts[:long] ? (puts haiku([7,9,7])) : nil
+opts[:short] ? (puts haiku([3,5,3]), puts) : (opts[:long] ? (puts haiku([7,9,7]), puts) : (puts haiku([5,7,5]), puts))
