@@ -5,7 +5,7 @@ opts = Trollop::options do
   opt :syl, "list of syllables by line", :default => [5,7,5]
 end
 
-CMUDICT_PATH = '/Users/vera/nltk_data/corpora/cmudict/cmudict'
+CMUDICT_PATH = '~/nltk_data/corpora/cmudict/cmudict'
 
 def create_syllable_file
   lines = File.read(CMUDICT_PATH).split(/\n/)
